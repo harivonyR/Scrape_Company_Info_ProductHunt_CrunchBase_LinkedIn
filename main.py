@@ -30,9 +30,3 @@ crunchbase_info = scrape_crunchbase_info(domain)
 linkedin_url = get_linkedin_url(crunchbase_info)
 linkedin_info = scrape_linkedin_info(domain=domain)
 #linkedin_info = scrape_linkedin_info(company_url=linkedin_url)
-"""
-# 3- Lookup LinkedIn Info :
-linkedin_url = get_ocmpany_linkedin(cruncbase_info) # social network > 0 or 1
-linkedin_info = get_linkedin_info(linkedin_url)
-
-"""
