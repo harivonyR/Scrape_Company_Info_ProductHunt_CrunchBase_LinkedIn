@@ -35,5 +35,5 @@ if domain :
     #linkedin_url = get_linkedin_url(crunchbase_info)
     #linkedin_info = scrape_linkedin_info(company_url=linkedin_url)
     linkedin_info = scrape_linkedin_info(domain=domain)
-    data.append({"linkein_info":linkedin_info})
+    data.append({"linkedin_info":linkedin_info})
     
