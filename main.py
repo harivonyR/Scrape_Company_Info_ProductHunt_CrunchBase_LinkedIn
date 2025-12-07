@@ -12,21 +12,28 @@ import pandas as pd
 
 product_launch = pd.read_csv("input/producthunt_archive_sample.csv",sep=",")
 
+data = []
 # 0- product row instance
-row = product_launch.iloc[1]
+row = product_launch.iloc[0]
+data.append({"product": row.to_dict()})
 
 # 1- Scrape ProductHunt Info
 product_url = row["product_url"]
-
 if product_url :
     producthunt_info = scrape_product_info(product_url)
-
+    data.append({"product_hunt":producthunt_info})
+    
 # 2- lookup crunchbase_info
 company_url = producthunt_info["company_url"]
-domain = get_domain_strict(company_url)
-crunchbase_info = scrape_crunchbase_info(domain)
+if company_url :
+    domain = get_domain_strict(company_url)
+    crunchbase_info = scrape_crunchbase_info(domain)
+    data.append({"crunchbase_info":crunchbase_info})
 
 # 3- lookup LinkedIn Info
-linkedin_url = get_linkedin_url(crunchbase_info)
-linkedin_info = scrape_linkedin_info(domain=domain)
-#linkedin_info = scrape_linkedin_info(company_url=linkedin_url)
+if domain :
+    #linkedin_url = get_linkedin_url(crunchbase_info)
+    #linkedin_info = scrape_linkedin_info(company_url=linkedin_url)
+    linkedin_info = scrape_linkedin_info(domain=domain)
+    data.append({"linkein_info":linkedin_info})
+    
