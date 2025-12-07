@@ -7,8 +7,8 @@ How it works :
     - Scrape Producthunt info (title, desctiption, website, ...),
     - Scrape Crunchbase info,
     - Scrape LinkedIn info.
-
 """
+
 from script.producthunt import scrape_product_info
 from script.linkedin import scrape_linkedin_info
 from script.crunchbase import scrape_crunchbase_info
@@ -19,11 +19,21 @@ from tqdm import tqdm
 
 product_launch = pd.read_csv("input/producthunt_archive_sample.csv", sep=",")
 
-company_info = []
+product_launch_head = product_launch.head(10)
 
+pbar = tqdm(product_launch_head.index)
+
+# or uncomment for a complete scraping
+#pbar = tqdm(product_launch.index)
 
 """ I. Loop on Product List """
-for _, row in tqdm(product_launch.head(10).iterrows(), total=10, desc="Scraping"):
+company_info = []
+
+for idx in pbar:
+    
+    row = product_launch_head.loc[idx]
+    pbar.set_description(f"Scraping Product {idx}")
+    
     entry = {}
 
     # 0 - Base data
