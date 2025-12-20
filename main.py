@@ -19,7 +19,7 @@ from tqdm import tqdm
 
 product_launch = pd.read_csv("input/producthunt_archive_sample.csv", sep=",")
 
-product_launch_head = product_launch.head(10)
+product_launch_head = product_launch.head(50)
 
 pbar = tqdm(product_launch_head.index)
 

@@ -8,7 +8,6 @@ Created on Sat Dec  6 19:58:19 2025
 
 import requests
 from credential import x_api_key
-import json
 
 def website_crawler(site_url):
     url = "https://piloterr.com/api/v2/website/crawler"
